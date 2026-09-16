@@ -412,27 +412,33 @@ parser = Parser(tokens)
 tree = parser.parse_program()
 
 
-def pretty(node, indent=0):
-    pad = "  " * indent
+def pretty(node, prefix="", is_last=True):
+    connector = "└── " if is_last else "├── "
+
     if not isinstance(node, tuple):
-        print(f"{pad}{node!r}")
+        print(prefix + connector + str(node))
         return
 
     if len(node) == 0:
-        print(f"{pad}()")
+        print(prefix + connector + "()")
         return
 
     head, *rest = node
-    print(f"{pad}{head}")
+    print(prefix + connector + str(head))
+
+    children = []
     for child in rest:
         if isinstance(child, list):
-            for item in child:
-                pretty(item, indent + 1)
+            children.extend(child)
         else:
-            pretty(child, indent + 1)
+            children.append(child)
+
+    child_prefix = prefix + ("    " if is_last else "│   ")
+    for i, child in enumerate(children):
+        pretty(child, child_prefix, i == len(children) - 1)
 
 
-pretty(tree)
+pretty(tree, prefix="", is_last=True)
 ```
 
 ---
@@ -442,17 +448,17 @@ pretty(tree)
 Pretty-printed output looks like:
 
 ```text
-PROGRAM
-  ASSIGN
-    x
-    +
-      NUM
-        2
-      *
-        NUM
-          3
-        NUM
-          4
+└── PROGRAM
+    └── ASSIGN
+        ├── x
+        └── +
+            ├── NUM
+            │   └── 2
+            └── *
+                ├── NUM
+                │   └── 3
+                └── NUM
+                    └── 4
 ```
 
 The expression part means:
