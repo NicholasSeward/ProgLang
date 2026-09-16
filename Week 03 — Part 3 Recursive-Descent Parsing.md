@@ -410,26 +410,52 @@ tokens = [
 
 parser = Parser(tokens)
 tree = parser.parse_program()
-print(tree)
+
+
+def pretty(node, indent=0):
+    pad = "  " * indent
+    if not isinstance(node, tuple):
+        print(f"{pad}{node!r}")
+        return
+
+    if len(node) == 0:
+        print(f"{pad}()")
+        return
+
+    head, *rest = node
+    print(f"{pad}{head}")
+    for child in rest:
+        if isinstance(child, list):
+            for item in child:
+                pretty(item, indent + 1)
+        else:
+            pretty(child, indent + 1)
+
+
+pretty(tree)
 ```
 
 ---
 
 # Resulting expression tree
 
-Important part of the tree:
+Pretty-printed output looks like:
 
 ```text
-("+",
-    ("NUM", 2),
-    ("*",
-        ("NUM", 3),
-        ("NUM", 4)
-    )
-)
+PROGRAM
+  ASSIGN
+    x
+    +
+      NUM
+        2
+      *
+        NUM
+          3
+        NUM
+          4
 ```
 
-Means:
+The expression part means:
 
 ```text
 2 + (3 * 4)
