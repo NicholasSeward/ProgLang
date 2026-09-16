@@ -304,6 +304,12 @@ Parentheses call **back up** to `expression` — that is the recursion that is O
 Copy this whole block into a `.py` file (or a notebook cell) and run it.
 
 ```python
+import sys
+
+# Helpful on Windows terminals that default to cp1252
+sys.stdout.reconfigure(encoding="utf-8")
+
+
 class Parser:
     def __init__(self, tokens):
         self.tokens = tokens
