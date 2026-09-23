@@ -1,4 +1,5 @@
 # Programming Languages
+
 ## Week 3 — Part 3: Recursive-Descent Parsing (Deep Dive)
 
 Sebesta, Section 4.4 — with implementation detail for Lab 2
@@ -18,13 +19,15 @@ Sebesta, Section 4.4 — with implementation detail for Lab 2
 
 # Where this fits
 
-| Part | Focus |
-| --- | --- |
-| 3.1 | Semantics (meaning) |
-| 3.2 | Lexer + parsing overview |
+
+| Part    | Focus                         |
+| ------- | ----------------------------- |
+| 3.1     | Semantics (meaning)           |
+| 3.2     | Lexer + parsing overview      |
 | **3.3** | Recursive descent **in code** |
-| Lab 1 | Tokens |
-| Lab 2 | This style of parser → AST |
+| Lab 1   | Tokens                        |
+| Lab 2   | This style of parser → AST    |
+
 
 ---
 
@@ -40,6 +43,8 @@ flowchart LR
   T --> P[Parser functions]
   P --> A[Tree / AST]
 ```
+
+
 
 ---
 
@@ -91,11 +96,13 @@ factor     → NUM
 
 # Why the levels?
 
-| Nonterminal | Operators | Precedence |
-| --- | --- | --- |
-| `expression` | `+` `-` | lower |
-| `term` | `*` `/` | higher |
-| `factor` | numbers, ids, `(…)` | tightest |
+
+| Nonterminal  | Operators           | Precedence |
+| ------------ | ------------------- | ---------- |
+| `expression` | `+` `-`             | lower      |
+| `term`       | `*` `/`             | higher     |
+| `factor`     | numbers, ids, `(…)` | tightest   |
+
 
 `expression` calls `term` **before** handling `+` / `-`  
 → multiplication and division are parsed first.
@@ -111,6 +118,8 @@ flowchart BT
   F["factor   NUM ID ( )"]
   E --> T --> F
 ```
+
+
 
 Same layering idea as Week 2 BNF — now as **functions that call each other**.
 
@@ -177,7 +186,7 @@ def parse_program(self):
     return ("PROGRAM", statements)
 ```
 
-`*` in the grammar → **`while` loop** in the parser.
+`*` in the grammar → `**while` loop** in the parser.
 
 ---
 
@@ -299,175 +308,38 @@ Parentheses call **back up** to `expression` — that is the recursion that is O
 
 ---
 
-# Run it (complete)
-
-Copy this whole block into a `.py` file (or a notebook cell) and run it.
+# Run it
 
 ```python
-import sys
-
-# Helpful on Windows terminals that default to cp1252
-sys.stdout.reconfigure(encoding="utf-8")
-
-
-class Parser:
-    def __init__(self, tokens):
-        self.tokens = tokens
-        self.position = 0
-
-    def current_type(self):
-        if self.position >= len(self.tokens):
-            return "EOF"
-        return self.tokens[self.position][0]
-
-    def peek_type(self, offset):
-        position = self.position + offset
-        if position >= len(self.tokens):
-            return "EOF"
-        return self.tokens[position][0]
-
-    def consume(self, expected_type):
-        if self.current_type() != expected_type:
-            raise SyntaxError(
-                f"Expected {expected_type}, "
-                f"but found {self.current_type()}"
-            )
-        token = self.tokens[self.position]
-        self.position += 1
-        return token
-
-    # program → statement*
-    def parse_program(self):
-        statements = []
-        while self.current_type() != "EOF":
-            statements.append(self.parse_statement())
-        return ("PROGRAM", statements)
-
-    # statement → assignment | expression SEMICOLON
-    def parse_statement(self):
-        if (
-            self.current_type() == "ID"
-            and self.peek_type(1) == "ASSIGN"
-        ):
-            return self.parse_assignment()
-
-        expression = self.parse_expression()
-        self.consume("SEMICOLON")
-        return ("EXPRESSION_STATEMENT", expression)
-
-    # assignment → ID ASSIGN expression SEMICOLON
-    def parse_assignment(self):
-        name = self.consume("ID")[1]
-        self.consume("ASSIGN")
-        value = self.parse_expression()
-        self.consume("SEMICOLON")
-        return ("ASSIGN", name, value)
-
-    # expression → term { (PLUS | MINUS) term }
-    def parse_expression(self):
-        left = self.parse_term()
-        while self.current_type() in ("PLUS", "MINUS"):
-            operator = self.consume(self.current_type())[1]
-            right = self.parse_term()
-            left = (operator, left, right)
-        return left
-
-    # term → factor { (MULTIPLY | DIVIDE) factor }
-    def parse_term(self):
-        left = self.parse_factor()
-        while self.current_type() in ("MULTIPLY", "DIVIDE"):
-            operator = self.consume(self.current_type())[1]
-            right = self.parse_factor()
-            left = (operator, left, right)
-        return left
-
-    # factor → NUM | ID | LPAREN expression RPAREN
-    def parse_factor(self):
-        if self.current_type() == "NUM":
-            value = self.consume("NUM")[1]
-            return ("NUM", int(value))
-
-        if self.current_type() == "ID":
-            name = self.consume("ID")[1]
-            return ("ID", name)
-
-        if self.current_type() == "LPAREN":
-            self.consume("LPAREN")
-            value = self.parse_expression()
-            self.consume("RPAREN")
-            return value
-
-        raise SyntaxError(
-            f"Expected NUM, ID, or LPAREN, "
-            f"but found {self.current_type()}"
-        )
-
-
 tokens = [
-    ("ID", "x"),
-    ("ASSIGN", "="),
-    ("NUM", "2"),
-    ("PLUS", "+"),
-    ("NUM", "3"),
-    ("MULTIPLY", "*"),
-    ("NUM", "4"),
-    ("SEMICOLON", ";"),
+    ("ID", "x"), ("ASSIGN", "="),
+    ("NUM", "2"), ("PLUS", "+"),
+    ("NUM", "3"), ("MULTIPLY", "*"),
+    ("NUM", "4"), ("SEMICOLON", ";")
 ]
 
 parser = Parser(tokens)
 tree = parser.parse_program()
-
-
-def pretty(node, prefix="", is_last=True):
-    connector = "└── " if is_last else "├── "
-
-    if not isinstance(node, tuple):
-        print(prefix + connector + str(node))
-        return
-
-    if len(node) == 0:
-        print(prefix + connector + "()")
-        return
-
-    head, *rest = node
-    print(prefix + connector + str(head))
-
-    children = []
-    for child in rest:
-        if isinstance(child, list):
-            children.extend(child)
-        else:
-            children.append(child)
-
-    child_prefix = prefix + ("    " if is_last else "│   ")
-    for i, child in enumerate(children):
-        pretty(child, child_prefix, i == len(children) - 1)
-
-
-pretty(tree, prefix="", is_last=True)
+print(tree)
 ```
 
 ---
 
 # Resulting expression tree
 
-Pretty-printed output looks like:
+Important part of the tree:
 
 ```text
-└── PROGRAM
-    └── ASSIGN
-        ├── x
-        └── +
-            ├── NUM
-            │   └── 2
-            └── *
-                ├── NUM
-                │   └── 3
-                └── NUM
-                    └── 4
+("+",
+    ("NUM", 2),
+    ("*",
+        ("NUM", 3),
+        ("NUM", 4)
+    )
+)
 ```
 
-The expression part means:
+Means:
 
 ```text
 2 + (3 * 4)
@@ -487,14 +359,18 @@ flowchart TD
   M --> N4["NUM 4"]
 ```
 
+
+
 ---
 
 # Two problems that break recursive descent
 
-| Problem | Symptom |
-| --- | --- |
-| **Common prefixes** | Wrong branch / need to rewind |
-| **Left recursion** | Infinite recursion / `RecursionError` |
+
+| Problem             | Symptom                               |
+| ------------------- | ------------------------------------- |
+| **Common prefixes** | Wrong branch / need to rewind         |
+| **Left recursion**  | Infinite recursion / `RecursionError` |
+
 
 Fix the **grammar shape** (or use lookahead) — do not hope backtracking will save you forever.
 
@@ -546,11 +422,13 @@ except SyntaxError:
     return self.parse_expression_statement()
 ```
 
-| Pros | Cons |
-| --- | --- |
-| Easy to slap on | Slow on bad input |
-| | Hard to debug |
-| | Error messages get muddy |
+
+| Pros            | Cons                     |
+| --------------- | ------------------------ |
+| Easy to slap on | Slow on bad input        |
+|                 | Hard to debug            |
+|                 | Error messages get muddy |
+
 
 Prefer: **lookahead** or **left factoring**.
 
@@ -577,12 +455,14 @@ def parse_statement(self):
 
 # Lookahead decision table
 
-| Tokens seen | Choice |
-| --- | --- |
-| `ID ASSIGN` | assignment |
-| `ID PLUS` | expression |
-| `ID MULTIPLY` | expression |
+
+| Tokens seen    | Choice     |
+| -------------- | ---------- |
+| `ID ASSIGN`    | assignment |
+| `ID PLUS`      | expression |
+| `ID MULTIPLY`  | expression |
 | `ID SEMICOLON` | expression |
+
 
 No rewind — decide **before** consuming the wrong path.
 
@@ -654,9 +534,11 @@ A  → α A'
 A' → β | γ
 ```
 
-| Before | After |
-| --- | --- |
+
+| Before                        | After                            |
+| ----------------------------- | -------------------------------- |
 | Two rules that start the same | One shared prefix, then a choice |
+
 
 ---
 
@@ -789,7 +671,7 @@ EBNF:
 A → β { α }
 ```
 
-For operators: **`while` loop**, fold into `left`.
+For operators: `**while` loop**, fold into `left`.
 
 ---
 
@@ -809,10 +691,12 @@ Stops infinite recursion — but **changes meaning**.
 
 `10 - 3 - 2`
 
-| Style | Grouping | Value |
-| --- | --- | --- |
+
+| Style                                | Grouping       | Value |
+| ------------------------------------ | -------------- | ----- |
 | Left-assoc (loop / left-rec grammar) | `(10 - 3) - 2` | **5** |
-| Right-assoc (right recursion) | `10 - (3 - 2)` | **9** |
+| Right-assoc (right recursion)        | `10 - (3 - 2)` | **9** |
+
 
 Use the **loop** fix: no left recursion, **keep** left associativity.
 
@@ -820,20 +704,24 @@ Use the **loop** fix: no left recursion, **keep** left associativity.
 
 # Side by side — wrong vs right rewrite
 
-| Approach | Safe for `-`? |
-| --- | --- |
-| Left recursive function | No — stack overflow |
-| Right recursive grammar | Parses, **wrong** assoc |
-| `term { MINUS term }` + loop | Yes — left-assoc |
+
+| Approach                     | Safe for `-`?           |
+| ---------------------------- | ----------------------- |
+| Left recursive function      | No — stack overflow     |
+| Right recursive grammar      | Parses, **wrong** assoc |
+| `term { MINUS term }` + loop | Yes — left-assoc        |
+
 
 ---
 
 # Summary table
 
-| Problem | Example | Result | Fix |
-| --- | --- | --- | --- |
-| Common prefix | `ID ASSIGN … \| ID PLUS …` | Wrong branch / backtrack | Lookahead or left factor |
-| Left recursion | `expr → expr PLUS term` | Infinite recursion | `{ }` + loop |
+
+| Problem        | Example                   | Result                   | Fix                      |
+| -------------- | ------------------------- | ------------------------ | ------------------------ |
+| Common prefix  | `ID ASSIGN … | ID PLUS …` | Wrong branch / backtrack | Lookahead or left factor |
+| Left recursion | `expr → expr PLUS term`   | Infinite recursion       | `{ }` + loop             |
+
 
 ---
 
@@ -876,10 +764,3 @@ This grammar:
 3. Why is right recursion a bad “fix” for `a - b - c`?
 4. Draw the tree your parser should build for `2 + 3 * 4`.
 
----
-
-# Before next class
-
-**Lab 1:** finish lexer (tokens like today’s tuples)  
-**Lab 2 ahead:** recursive-descent parser in this style  
-**Reading next:** Chapter 5 — names, bindings, scopes
