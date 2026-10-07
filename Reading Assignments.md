@@ -112,18 +112,7 @@ Complete each week’s reading **before** that week’s class meetings unless no
 
 ---
 
-## Week 7 — Midterm (no new reading)
-
-**Required**
-- None (no new chapters)
-
-**Review as needed**
-- Chapters 1, 3-8
-- Lab 1-2 concepts: tokens, grammars, ASTs
-
----
-
-## Week 8 — Subprograms
+## Week 7 — Subprograms
 
 **Required**
 - Chapter 9 (entire chapter)
@@ -140,6 +129,17 @@ Complete each week’s reading **before** that week’s class meetings unless no
   - 9.11 User-Defined Overloaded Operators
   - 9.12 Closures
   - 9.13 Coroutines
+
+---
+
+## Week 8 — Midterm (no new reading)
+
+**Required**
+- None (no new chapters)
+
+**Review as needed**
+- Chapters 1, 3-9
+- Lab 1-2 concepts: tokens, grammars, ASTs
 
 ---
 
@@ -249,8 +249,8 @@ Complete each week’s reading **before** that week’s class meetings unless no
 | 4 | Chapter 5 (all) |
 | 5 | Section 6.1-6.5, 6.10-6.15 |
 | 6 | Chapter 7 (all); Chapter 8 (all) |
-| 7 | Review Chapters 1, 3-8 (no new reading) |
-| 8 | Chapter 9 (all) |
+| 7 | Chapter 9 (all) |
+| 8 | Review Chapters 1, 3-9 (no new reading) |
 | 9 | Chapter 10 (all) |
 | 10 | Chapter 11 (all) |
 | 11 | Section 12.1-12.5; Section 14.1-14.4; Section 13.1-13.5 |

@@ -46,9 +46,9 @@ Labs build one **mini interpreter** (source → tokens → AST → evaluate). St
 | 3 | Semantics overview; lexical analysis; parsing and recursive descent | **Lab 1 due — Lexer** (source → tokens) |
 | 4 | Names, bindings, scope, and lifetime | — |
 | 5 | Data types; type checking and type equivalence | **Lab 2 due — Parser** (tokens → AST) |
-| 6 | Expressions, assignment, and control structures | Midterm review materials released |
-| 7 | Midterm (no new topics) | **Midterm exam** (Weeks 1–6) |
-| 8 | Subprograms: parameter passing, overloading, generics, closures | — |
+| 6 | Expressions, assignment, and control structures | — |
+| 7 | Subprograms: parameter passing, overloading, generics, closures | Midterm review materials released |
+| 8 | Midterm (no new topics) | **Midterm exam** (Weeks 1–7) |
 | 9 | Implementing subprograms: activation records and environments | **Lab 3 due — Evaluator** (AST → values + environments) |
 | 10 | Abstract data types and encapsulation | Lab 4 kickoff (functions + control) |
 | 11 | Object-oriented programming; exception handling; concurrency survey | Lab 4 continues |
@@ -64,8 +64,9 @@ Labs build one **mini interpreter** (source → tokens → AST → evaluate). St
 | --- | --- | --- |
 | Foundations | 1–3 | Criteria, syntax/semantics, lexing & parsing ideas |
 | Core constructs | 4–6 | Names, types, expressions, control |
-| Midterm | 7 | Review + exam (off week) |
-| Subprograms & runtime | 8–9 | Calls, activation records, environments |
+| Subprograms | 7 | Calls, parameter passing, closures |
+| Midterm | 8 | Review + exam (off week) |
+| Runtime | 9 | Activation records, environments |
 | Abstraction & OOP | 10–11 | ADTs, OOP, exceptions (concurrency survey) |
 | Paradigms + finish interpreter | 12–13 | FP (and light logic); polish interpreter |
 | Final | 14 | Presentations & demos |
@@ -78,7 +79,7 @@ Labs build one **mini interpreter** (source → tokens → AST → evaluate). St
 | --- | --- |
 | Problem sets / short homework | Design issues, tracing, grammars |
 | Labs 1–4 | Build a mini language end-to-end |
-| Midterm (Week 7) | Written exam on Weeks 1–6 (+ Ch. 1, 3–8) |
+| Midterm (Week 8) | Written exam on Weeks 1–7 (Ch. 1, 3–9) |
 | Final (Week 14) | Mini-interpreter presentation + demo |
 
 ---
@@ -172,27 +173,27 @@ Starter code, when given, will be **Python, Java, or C++**. Students may port or
 | --- | --- |
 | **Topics** | Operator overloading & coercions; short-circuit evaluation; assignment; selection & iteration; unconditional branching; guarded commands (brief) |
 | **Reading** | Ch. 7; Ch. 8 |
-| **Work** | Design-issue homework; midterm review sheet released; Lab 3 preview (evaluator + environments) |
+| **Work** | Design-issue homework; Lab 3 preview (evaluator + environments) |
 
 ---
 
-### Week 7 — Midterm off week
-
-| | |
-| --- | --- |
-| **Topics** | No new lecture topics |
-| **Reading** | Review Ch. 1, 3–8 (and Lab 1–2 ideas: tokens, grammars, AST) as needed |
-| **Work** | **Midterm exam**; office hours / review session only |
-
----
-
-### Week 8 — Subprograms
+### Week 7 — Subprograms
 
 | | |
 | --- | --- |
 | **Topics** | Subprogram design issues; parameter-passing methods; subprograms as parameters; overloading & generics (survey); closures; coroutines (brief) |
 | **Reading** | Ch. 9 |
-| **Work** | Parameter-passing tracing homework; connect “environment / activation” ideas to Lab 3 |
+| **Work** | Parameter-passing tracing homework; connect “environment / activation” ideas to Lab 3; midterm review sheet released |
+
+---
+
+### Week 8 — Midterm off week
+
+| | |
+| --- | --- |
+| **Topics** | No new lecture topics |
+| **Reading** | Review Ch. 1, 3–9 (and Lab 1–2 ideas: tokens, grammars, AST) as needed |
+| **Work** | **Midterm exam**; office hours / review session only |
 
 ---
 
@@ -266,7 +267,7 @@ Starter code, when given, will be **Python, Java, or C++**. Students may port or
 | 2–3 | BNF / ambiguity / parse trees |
 | 4 | Scope & binding tracing |
 | 6 | Expressions & control design issues |
-| 8 | Parameter passing |
+| 7 | Parameter passing |
 | 11 | OOP dispatch / exceptions |
 
 ---
@@ -317,8 +318,8 @@ Starter code, when given, will be **Python, Java, or C++**. Students may port or
 | 4 | Ch. 5 |
 | 5 | Ch. 6 (selected) |
 | 6 | Ch. 7–8 |
-| 7 | Review only |
-| 8 | Ch. 9 |
+| 7 | Ch. 9 |
+| 8 | Review only |
 | 9 | Ch. 10 |
 | 10 | Ch. 11 |
 | 11 | Ch. 12, 14 (exc.), 13 (survey) |

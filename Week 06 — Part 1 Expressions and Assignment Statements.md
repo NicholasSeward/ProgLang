@@ -29,7 +29,8 @@ Sebesta, Chapter 7
 | 5 | Types — what values **are** |
 | **6 Part 1** | Expressions — how values get **computed** and **stored** |
 | 6 Part 2 | Control — which statements run, and how often |
-| 7 | Midterm (Weeks 1–6) |
+| 7 | Subprograms |
+| 8 | Midterm (Weeks 1–7) |
 | Lab 3 | Your evaluator makes **every** decision in this deck |
 
 ---
@@ -708,7 +709,7 @@ You should be able to:
 
 **Next (Part 2):** Chapter 8 — selection, iteration, `goto`, guarded commands
 
-**Midterm (Week 7):** covers Weeks 1–6; review sheet released this week
+**Midterm (Week 8):** covers Weeks 1–7; review sheet released Week 7
 
 ---
 

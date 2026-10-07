@@ -11,7 +11,7 @@ Six short programming assignments, one per language. Each one is placed in the w
 
 ## Where they fit
 
-Lab deadlines are Weeks 3, 5, 9, and 13. The midterm is Week 7. Mini assignments go in the gaps.
+Lab deadlines are Weeks 3, 5, 9, and 13. The midterm is Week 8. Mini assignments go in the gaps.
 
 | Week | Topic | Lab / exam | Mini assignment |
 | --- | --- | --- | --- |
@@ -21,8 +21,8 @@ Lab deadlines are Weeks 3, 5, 9, and 13. The midterm is Week 7. Mini assignments
 | 4 | Names, bindings, scopes | — | **Rust** |
 | 5 | Data types | Lab 2 due | — |
 | 6 | Expressions and control | — | **APL** |
-| 7 | — | Midterm | — |
-| 8 | Subprograms | — | **Racket** |
+| 7 | Subprograms | — | **Racket** |
+| 8 | — | Midterm | — |
 | 9 | Implementing subprograms | Lab 3 due | — |
 | 10 | ADTs and encapsulation | — | — (buffer) |
 | 11 | OOP, exceptions, concurrency | — | **Erlang** |
@@ -32,7 +32,7 @@ Lab deadlines are Weeks 3, 5, 9, and 13. The midterm is Week 7. Mini assignments
 
 ```mermaid
 flowchart LR
-  C["Wk 1–2 COBOL"] --> R["Wk 4 Rust"] --> A["Wk 6 APL"] --> K["Wk 8 Racket"] --> E["Wk 11 Erlang"] --> P["Wk 13–14 Prolog"]
+  C["Wk 1–2 COBOL"] --> R["Wk 4 Rust"] --> A["Wk 6 APL"] --> K["Wk 7 Racket"] --> E["Wk 11 Erlang"] --> P["Wk 13–14 Prolog"]
 ```
 
 ---
@@ -44,7 +44,7 @@ Weeks 1–5 have passed, so here is a catch-up placement that still avoids lab w
 | Week | Mini assignment | Why it still fits |
 | --- | --- | --- |
 | 6 | **APL** | Expressions — right on topic |
-| 8 | **COBOL** | Light restart after the midterm; reviews Week 5 records and decimal types |
+| 7 | **COBOL** | Light load before the midterm; reviews Week 5 records and decimal types, which are on the exam |
 | 10 | **Rust** | Follows Week 9 stack, heap, and lifetimes; traits tie to ADTs |
 | 11 | **Erlang** | Concurrency and exceptions — right on topic |
 | 12 | **Racket** | Functional programming — right on topic |
@@ -180,7 +180,7 @@ For each function, add a comment reading it **right to left** in plain English.
 
 ## Racket — Higher-order toolkit + a tiny evaluator
 
-**When:** Week 8  
+**When:** Week 7  
 **Ties to:** Subprograms as parameters, closures, recursion (Chapter 9); previews functional programming (Week 12); connects to Labs 3–4
 
 ### Part 1 — Build your own higher-order functions

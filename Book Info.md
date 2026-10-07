@@ -386,7 +386,7 @@ Typical PL courses mix **design critique** (the book’s real point) with **a li
 | --- | --- | --- |
 | Problem sets | 20–25% | Book-style short answers + grammar/tracing exercises; 5–7 over the term |
 | Programming labs | 20–25% | 4–6 small labs (see below), not a software-engineering project |
-| Midterm | 15–20% | Week 7: written, closed- or open-book; definitions + “compare these designs” + tracing |
+| Midterm | 15–20% | Week 8: written, closed- or open-book; definitions + “compare these designs” + tracing |
 | Final | 20–25% | Cumulative; more implementation/OOP/FP/logic than the midterm |
 | Term project *or* paper | 15–20% | One substantial artifact (choose one model below) |
 | Participation / quizzes | 0–10% | Optional weekly 10-minute “what does this bind to?” quizzes |

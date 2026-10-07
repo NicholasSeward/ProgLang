@@ -25,7 +25,8 @@ Sebesta, Chapter 8
 | --- | --- |
 | 6 Part 1 | Expressions — how values get **computed** and **stored** |
 | **6 Part 2** | Control — **which** statements run, and **how often** |
-| 7 | Midterm (Weeks 1–6) |
+| 7 | Subprograms |
+| 8 | Midterm (Weeks 1–7) |
 | Lab 2 | Your parser already builds `If` and loop nodes |
 | Lab 4 | Your interpreter makes those nodes **run** |
 
@@ -640,7 +641,7 @@ for n in countdown(3):
 | Ruby | blocks + `yield` to the caller's block |
 | Kotlin | `sequence { yield(x) }` |
 
-Returns in Week 8 (coroutines).
+Returns in Week 7 (coroutines).
 
 ---
 
@@ -886,11 +887,13 @@ You should be able to:
 
 ---
 
-# Before the midterm
+# Before next week
 
 **Read (if not done):** finish Chapter 8
 
-**Midterm (Week 7):** covers Weeks 1–6
+**Next (Week 7):** Chapter 9 — subprograms
+
+**Midterm (Week 8):** covers Weeks 1–7
 
 **Lab 2:** your grammar's `if` and loop rules are the syntax half of today's lecture
 
