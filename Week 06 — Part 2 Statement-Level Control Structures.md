@@ -26,7 +26,8 @@ Sebesta, Chapter 8
 | 6 Part 1 | Expressions — how values get **computed** and **stored** |
 | **6 Part 2** | Control — **which** statements run, and **how often** |
 | 7 | Subprograms |
-| 8 | Midterm (Weeks 1–7) |
+| 8 | Implementing subprograms |
+| 9 | Midterm (Weeks 1–7) |
 | Lab 2 | Your parser already builds `If` and loop nodes |
 | Lab 4 | Your interpreter makes those nodes **run** |
 
@@ -893,7 +894,7 @@ You should be able to:
 
 **Next (Week 7):** Chapter 9 — subprograms
 
-**Midterm (Week 8):** covers Weeks 1–7
+**Midterm (Week 9):** covers Weeks 1–7
 
 **Lab 2:** your grammar's `if` and loop rules are the syntax half of today's lecture
 

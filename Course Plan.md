@@ -47,9 +47,9 @@ Labs build one **mini interpreter** (source → tokens → AST → evaluate). St
 | 4 | Names, bindings, scope, and lifetime | — |
 | 5 | Data types; type checking and type equivalence | **Lab 2 due — Parser** (tokens → AST) |
 | 6 | Expressions, assignment, and control structures | — |
-| 7 | Subprograms: parameter passing, overloading, generics, closures | Midterm review materials released |
-| 8 | Midterm (no new topics) | **Midterm exam** (Weeks 1–7) |
-| 9 | Implementing subprograms: activation records and environments | **Lab 3 due — Evaluator** (AST → values + environments) |
+| 7 | Subprograms: parameter passing, overloading, generics, closures | — |
+| 8 | Implementing subprograms: activation records and environments | Midterm review materials released |
+| 9 | Midterm (no new topics) | **Midterm exam** (Weeks 1–7); **Lab 3 due — Evaluator** (AST → values + environments) |
 | 10 | Abstract data types and encapsulation | Lab 4 kickoff (functions + control) |
 | 11 | Object-oriented programming; exception handling; concurrency survey | Lab 4 continues |
 | 12 | Functional programming | Lab 4 continues |
@@ -65,8 +65,8 @@ Labs build one **mini interpreter** (source → tokens → AST → evaluate). St
 | Foundations | 1–3 | Criteria, syntax/semantics, lexing & parsing ideas |
 | Core constructs | 4–6 | Names, types, expressions, control |
 | Subprograms | 7 | Calls, parameter passing, closures |
-| Midterm | 8 | Review + exam (off week) |
-| Runtime | 9 | Activation records, environments |
+| Runtime | 8 | Activation records, environments |
+| Midterm | 9 | Review + exam (off week) |
 | Abstraction & OOP | 10–11 | ADTs, OOP, exceptions (concurrency survey) |
 | Paradigms + finish interpreter | 12–13 | FP (and light logic); polish interpreter |
 | Final | 14 | Presentations & demos |
@@ -79,7 +79,7 @@ Labs build one **mini interpreter** (source → tokens → AST → evaluate). St
 | --- | --- |
 | Problem sets / short homework | Design issues, tracing, grammars |
 | Labs 1–4 | Build a mini language end-to-end |
-| Midterm (Week 8) | Written exam on Weeks 1–7 (Ch. 1, 3–9) |
+| Midterm (Week 9) | Written exam on Weeks 1–7 (Ch. 1, 3–9) |
 | Final (Week 14) | Mini-interpreter presentation + demo |
 
 ---
@@ -107,7 +107,7 @@ Stretch (optional, for stronger students): closures, lists, or a tiny standard l
 | --- | --- | --- | --- |
 | **Lab 1 — Lexer** | End of Week 3 | Source string → token stream | Ch. 4 lexical analysis; Ch. 3 token/lexeme ideas |
 | **Lab 2 — Parser / AST** | End of Week 5 | Tokens → AST | Ch. 3 grammars; Ch. 4 recursive-descent |
-| **Lab 3 — Expression evaluator** | End of Week 9 | AST → values; environments for names | Ch. 5 binding/scope; Ch. 7 expressions; Ch. 10 AR / env intuition |
+| **Lab 3 — Expression evaluator** | End of Week 9 (midterm week) | AST → values; environments for names | Ch. 5 binding/scope; Ch. 7 expressions; Ch. 10 AR / env intuition |
 | **Lab 4 — Full mini interpreter** | End of Week 13 | Control + functions on top of Lab 3 | Ch. 8 control; Ch. 9–10 subprograms |
 
 Starter code, when given, will be **Python, Java, or C++**. Students may port or rewrite in another language if they document how to run it.
@@ -183,27 +183,27 @@ Starter code, when given, will be **Python, Java, or C++**. Students may port or
 | --- | --- |
 | **Topics** | Subprogram design issues; parameter-passing methods; subprograms as parameters; overloading & generics (survey); closures; coroutines (brief) |
 | **Reading** | Ch. 9 |
-| **Work** | Parameter-passing tracing homework; connect “environment / activation” ideas to Lab 3; midterm review sheet released |
+| **Work** | Parameter-passing tracing homework; connect “environment / activation” ideas to Lab 3 |
 
 ---
 
-### Week 8 — Midterm off week
-
-| | |
-| --- | --- |
-| **Topics** | No new lecture topics |
-| **Reading** | Review Ch. 1, 3–9 (and Lab 1–2 ideas: tokens, grammars, AST) as needed |
-| **Work** | **Midterm exam**; office hours / review session only |
-
----
-
-### Week 9 — Implementing subprograms
+### Week 8 — Implementing subprograms
 
 | | |
 | --- | --- |
 | **Topics** | Call/return semantics; stack-dynamic locals & activation records; nested subprograms; blocks; implementing dynamic scoping |
 | **Reading** | Ch. 10 |
-| **Work** | **Lab 3 due:** evaluate expressions + variable bindings (environment / symbol table); `if` optional here or pushed to Lab 4 |
+| **Work** | Activation-record stack drawing practice; midterm review sheet released |
+
+---
+
+### Week 9 — Midterm off week
+
+| | |
+| --- | --- |
+| **Topics** | No new lecture topics |
+| **Reading** | Review Ch. 1, 3–9 (and Lab 1–2 ideas: tokens, grammars, AST) as needed |
+| **Work** | **Midterm exam**; office hours / review session only; **Lab 3 due:** evaluate expressions + variable bindings (environment / symbol table); `if` optional here or pushed to Lab 4 |
 
 ---
 
@@ -319,8 +319,8 @@ Starter code, when given, will be **Python, Java, or C++**. Students may port or
 | 5 | Ch. 6 (selected) |
 | 6 | Ch. 7–8 |
 | 7 | Ch. 9 |
-| 8 | Review only |
-| 9 | Ch. 10 |
+| 8 | Ch. 10 |
+| 9 | Review only |
 | 10 | Ch. 11 |
 | 11 | Ch. 12, 14 (exc.), 13 (survey) |
 | 12 | Ch. 15 (selected) |

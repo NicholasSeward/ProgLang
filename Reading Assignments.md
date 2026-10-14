@@ -132,18 +132,7 @@ Complete each week’s reading **before** that week’s class meetings unless no
 
 ---
 
-## Week 8 — Midterm (no new reading)
-
-**Required**
-- None (no new chapters)
-
-**Review as needed**
-- Chapters 1, 3-9
-- Lab 1-2 concepts: tokens, grammars, ASTs
-
----
-
-## Week 9 — Implementing subprograms
+## Week 8 — Implementing subprograms
 
 **Required**
 - Chapter 10 (entire chapter)
@@ -153,6 +142,17 @@ Complete each week’s reading **before** that week’s class meetings unless no
   - 10.4 Nested Subprograms
   - 10.5 Blocks
   - 10.6 Implementing Dynamic Scoping
+
+---
+
+## Week 9 — Midterm (no new reading)
+
+**Required**
+- None (no new chapters)
+
+**Review as needed**
+- Chapters 1, 3-9
+- Lab 1-2 concepts: tokens, grammars, ASTs
 
 ---
 
@@ -250,8 +250,8 @@ Complete each week’s reading **before** that week’s class meetings unless no
 | 5 | Section 6.1-6.5, 6.10-6.15 |
 | 6 | Chapter 7 (all); Chapter 8 (all) |
 | 7 | Chapter 9 (all) |
-| 8 | Review Chapters 1, 3-9 (no new reading) |
-| 9 | Chapter 10 (all) |
+| 8 | Chapter 10 (all) |
+| 9 | Review Chapters 1, 3-9 (no new reading) |
 | 10 | Chapter 11 (all) |
 | 11 | Section 12.1-12.5; Section 14.1-14.4; Section 13.1-13.5 |
 | 12 | Section 15.1-15.5, 15.10-15.11 |

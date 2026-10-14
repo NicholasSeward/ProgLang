@@ -27,8 +27,8 @@ Sebesta, Chapter 9
 | 4 | Names, bindings, static vs dynamic scope |
 | 6 | Expressions and control |
 | **7** | Subprograms — how calls, parameters, and returns are **designed** |
-| 8 | Midterm (Weeks 1–7) |
-| 9 | Implementing subprograms — how calls **work** underneath |
+| 8 | Implementing subprograms — how calls **work** underneath |
+| 9 | Midterm (Weeks 1–7) |
 | Lab 3–4 | Your interpreter evaluates function definitions and calls |
 
 ---
@@ -193,7 +193,7 @@ int next_id(void) {
 }
 ```
 
-Week 9 shows how stack-dynamic locals live in **activation records**.
+Week 8 shows how stack-dynamic locals live in **activation records**.
 
 ---
 
@@ -983,9 +983,9 @@ You should be able to:
 
 **Read (if not done):** finish Chapter 9
 
-**Midterm (Week 8):** covers Weeks 1–7 (Chapters 1, 3–9); review sheet released this week
+**Next (Week 8):** Chapter 10 — how subprograms are implemented (activation records)
 
-**After the midterm (Week 9):** Chapter 10 — how subprograms are implemented (activation records)
+**Midterm (Week 9):** covers Weeks 1–7 (Chapters 1, 3–9); review sheet released Week 8
 
 ---
 
