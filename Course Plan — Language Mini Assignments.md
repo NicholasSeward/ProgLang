@@ -1,9 +1,9 @@
 # Programming Languages — Language Mini Assignments
 
 **Textbook:** Sebesta, *Concepts of Programming Languages*, 12th ed.  
-**Languages:** COBOL, Rust, APL, Racket, Erlang, Prolog
+**Languages:** COBOL, Rust, APL, J, Racket, Erlang, Prolog
 
-Six short programming assignments, one per language. Each one is placed in the week whose topic that language shows off best, and in a week where no lab is due.
+Seven short programming assignments, one per language. Each one is placed in the week whose topic that language shows off best, and in a week where no lab is due. J is written and not pinned to a week.
 
 **Size:** about 2–3 hours each. Small enough to finish in a week, big enough to write real code.
 
@@ -178,6 +178,20 @@ For each function, add a comment reading it **right to left** in plain English.
 
 ---
 
+## J — Right to left, forks, and insert
+
+**When:** open (array language; same ideas as APL, ASCII spelling)  
+**Ties to:** Precedence and associativity (Chapter 7); array operations (Chapter 6); writability vs readability (Chapter 1)  
+**Student handout:** `J — Mini Assignment.md`
+
+### Task
+
+Predict-then-run a few expressions, then define `avg` (the fork `+/ % #`), `range`, `evens`, and `above`. No loops.
+
+**Tools:** the assignment repo, opened in a GitHub Codespace (J 9.7, play button on `.ijs` files, or `jconsole`). Primer: [Learning J](https://www.jsoftware.com/help/learning/contents.htm), chapters 1–3. Symbol lookup: [NuVoc](https://code.jsoftware.com/wiki/NuVoc).
+
+---
+
 ## Racket — Higher-order toolkit + a tiny evaluator
 
 **When:** Week 7  
@@ -294,6 +308,7 @@ Write a definite clause grammar (`-->`) that accepts arithmetic expressions from
 | COBOL | Types built for a domain (money, records, formatted output) | 1, 2, 6 |
 | Rust | Lifetime and ownership checked at compile time | 5, 6, 10 |
 | APL | Precedence is a design choice; arrays instead of loops | 6, 7 |
+| J | Same array ideas as APL, in ASCII; forks and adverbs instead of loops | 6, 7 |
 | Racket | Functions as values; programs as data | 9, 15 |
 | Erlang | Concurrency through message passing, not shared memory | 13, 14 |
 | Prolog | Declare what is true; let the system search | 16 |

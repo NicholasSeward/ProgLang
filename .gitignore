@@ -4,3 +4,6 @@ Thumbs.db
 *~
 .env
 .env.*
+
+# Instructor-only materials (real exams, keys)
+instructor-private/
