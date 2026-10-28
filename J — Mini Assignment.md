@@ -1,7 +1,7 @@
 # J — Mini Assignment
 
 **Course:** Programming Languages  
-**Accept assignment:** [classroom50.org — J](https://classroom50.org/Seward-Classes/programming-languages/assignments/j/accept)  
+**Accept assignment:** [classroom50.org — J](https://classroom50.org/Seward-Classes/programming-languages/assignments/hello_j/accept)  
 **Submit:** link to your Git repository (from the accept link above)
 
 **Time:** about 2 hours. A few small tasks, not a project.
