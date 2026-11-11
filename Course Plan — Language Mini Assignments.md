@@ -1,9 +1,9 @@
 # Programming Languages — Language Mini Assignments
 
 **Textbook:** Sebesta, *Concepts of Programming Languages*, 12th ed.  
-**Languages:** COBOL, Rust, APL, J, Racket, Erlang, Prolog
+**Languages:** COBOL, Rust, APL, J, Go, Racket, Erlang, Prolog
 
-Seven short programming assignments, one per language. Each one is placed in the week whose topic that language shows off best, and in a week where no lab is due. J is written and not pinned to a week.
+Eight short programming assignments, one per language. Each one is placed in the week whose topic that language shows off best, and in a week where no lab is due. J and Go are written and not pinned to a week.
 
 **Size:** about 2–3 hours each. Small enough to finish in a week, big enough to write real code.
 
@@ -192,6 +192,20 @@ Predict-then-run a few expressions, then define `avg` (the fork `+/ % #`), `rang
 
 ---
 
+## Go — Errors, interfaces, and goroutines
+
+**When:** open (fits after Week 11 concurrency survey; also pairs with ADTs / interfaces)  
+**Ties to:** Message-passing concurrency (Chapter 13); ADTs and interfaces (Chapter 11); error handling without exceptions (Chapter 14 contrast)  
+**Student handout:** `Go — Mini Assignment.md`
+
+### Task
+
+`parsePositive` with `(int, error)`; a `Shape` interface with two implementations and `totalArea`; `squares` using one goroutine per element and a channel, preserving order.
+
+**Tools:** assignment repo / Codespace if provided, local Go, or [go.dev/play](https://go.dev/play/). Primer: [A Tour of Go](https://go.dev/tour/).
+
+---
+
 ## Racket — Higher-order toolkit + a tiny evaluator
 
 **When:** Week 7  
@@ -309,6 +323,7 @@ Write a definite clause grammar (`-->`) that accepts arithmetic expressions from
 | Rust | Lifetime and ownership checked at compile time | 5, 6, 10 |
 | APL | Precedence is a design choice; arrays instead of loops | 6, 7 |
 | J | Same array ideas as APL, in ASCII; forks and adverbs instead of loops | 6, 7 |
+| Go | Errors as values; implicit interfaces; goroutines and channels | 11, 13, 14 |
 | Racket | Functions as values; programs as data | 9, 15 |
 | Erlang | Concurrency through message passing, not shared memory | 13, 14 |
 | Prolog | Declare what is true; let the system search | 16 |
