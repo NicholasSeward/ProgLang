@@ -1,9 +1,9 @@
 # Programming Languages — Language Mini Assignments
 
 **Textbook:** Sebesta, *Concepts of Programming Languages*, 12th ed.  
-**Languages:** COBOL, Rust, APL, J, Go, Racket, Erlang, Prolog
+**Languages:** COBOL, Rust, APL, J, Go, Scheme, Racket, Erlang, Prolog
 
-Eight short programming assignments, one per language. Each one is placed in the week whose topic that language shows off best, and in a week where no lab is due. J and Go are written and not pinned to a week.
+Nine short programming assignments, one per language. Each one is placed in the week whose topic that language shows off best, and in a week where no lab is due. J, Go, and Scheme are written and not pinned to a week (Scheme fits Week 12 FP).
 
 **Size:** about 2–3 hours each. Small enough to finish in a week, big enough to write real code.
 
@@ -206,6 +206,20 @@ Predict-then-run a few expressions, then define `avg` (the fork `+/ % #`), `rang
 
 ---
 
+## Scheme — Functional tricks
+
+**When:** open / Week 12 (functional programming)  
+**Ties to:** First-class functions, higher-order helpers, closures, recursion (Chapter 15); contrasts with the Racket mini (which rebuilds `map` / `filter` / `foldl` and a tiny evaluator)  
+**Student handout:** `Scheme — Mini Assignment.md`
+
+### Task
+
+Predict-then-run a few expressions; score pipeline (`average` / `passing` / `curve` / `report`) with `map`/`filter`/`foldl`; `make-multiplier` + `curry2`; recursive `flatten`. No loops. Built-in `map`/`filter`/`foldl` allowed.
+
+**Tools:** [DrRacket](https://racket-lang.org) (`#lang racket`). Primer: Week 12 notes; [Racket lambda guide](https://docs.racket-lang.org/guide/lambda.html).
+
+---
+
 ## Racket — Higher-order toolkit + a tiny evaluator
 
 **When:** Week 7  
@@ -324,7 +338,8 @@ Write a definite clause grammar (`-->`) that accepts arithmetic expressions from
 | APL | Precedence is a design choice; arrays instead of loops | 6, 7 |
 | J | Same array ideas as APL, in ASCII; forks and adverbs instead of loops | 6, 7 |
 | Go | Errors as values; implicit interfaces; goroutines and channels | 11, 13, 14 |
-| Racket | Functions as values; programs as data | 9, 15 |
+| Scheme | FP tricks: lambda, map/filter/fold, closures, curry, recursive flatten | 15 |
+| Racket | Rebuild map/filter/fold; closures; tiny expression evaluator | 9, 15 |
 | Erlang | Concurrency through message passing, not shared memory | 13, 14 |
 | Prolog | Declare what is true; let the system search | 16 |
 
