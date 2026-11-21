@@ -2,7 +2,7 @@
 
 **Course:** Programming Languages  
 **Accept assignment:** [classroom50.org — Lab 4](https://classroom50.org/Seward-Classes/programming-languages/assignments/lab-4/accept)  
-**Submit:** link to your Git repository (from the accept link above)
+**Submit:** the Git repository link from that accept flow
 
 ---
 
@@ -214,14 +214,6 @@ Your repo **README must** include:
 | `tests/*.input.txt` / `*.expected.txt` | covering the Lab 4 list |
 | Demo / example programs | at least two you can run live |
 | Optional | test runner script |
-
----
-
-## What to submit
-
-1. Accept: https://classroom50.org/Seward-Classes/programming-languages/assignments/lab-4/accept
-2. Push to the repo that creates
-3. Submit that **repository link** as directed on classroom50 / LMS
 
 ---
 

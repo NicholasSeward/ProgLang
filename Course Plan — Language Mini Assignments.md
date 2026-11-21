@@ -192,31 +192,31 @@ Predict-then-run a few expressions, then define `avg` (the fork `+/ % #`), `rang
 
 ---
 
-## Go — Errors, interfaces, and goroutines
+## Go — Concurrent crawler
 
-**When:** open (fits after Week 11 concurrency survey; also pairs with ADTs / interfaces)  
-**Ties to:** Message-passing concurrency (Chapter 13); ADTs and interfaces (Chapter 11); error handling without exceptions (Chapter 14 contrast)  
+**When:** open (fits after Week 11 concurrency survey)  
+**Ties to:** Message-passing concurrency (Chapter 13); goroutines; shared-state sync  
 **Student handout:** `Go — Mini Assignment.md`
 
 ### Task
 
-`parsePositive` with `(int, error)`; a `Shape` interface with two implementations and `totalArea`; `squares` using one goroutine per element and a channel, preserving order.
+Starter sequential crawler in `main.go` (quotes.toscrape.com, depth 3, timer). Student makes fetches concurrent and compares elapsed times in the README.
 
-**Tools:** assignment repo / Codespace if provided, local Go, or [go.dev/play](https://go.dev/play/). Primer: [A Tour of Go](https://go.dev/tour/).
+**Tools:** assignment repo / Codespace if provided, or local Go. Primer: [A Tour of Go — concurrency](https://go.dev/tour/concurrency).
 
 ---
 
 ## Scheme — Functional tricks
 
 **When:** open / Week 12 (functional programming)  
-**Ties to:** First-class functions, higher-order helpers, closures, recursion (Chapter 15); contrasts with the Racket mini (which rebuilds `map` / `filter` / `foldl` and a tiny evaluator)  
+**Ties to:** First-class functions, higher-order helpers, tail recursion (Chapter 15)  
 **Student handout:** `Scheme — Mini Assignment.md`
 
 ### Task
 
-Predict-then-run a few expressions; score pipeline (`average` / `passing` / `curve` / `report`) with `map`/`filter`/`foldl`; `make-multiplier` + `curry2`; recursive `flatten`. No loops. Built-in `map`/`filter`/`foldl` allowed.
+`task1.scm` (one comment block + expressions); `task2.scm` (pipeline); `task3.scm` (tail recursion). Reflection and AI disclaimer in `README.md`.
 
-**Tools:** [DrRacket](https://racket-lang.org) (`#lang racket`). Primer: Week 12 notes; [Racket lambda guide](https://docs.racket-lang.org/guide/lambda.html).
+**Tools:** accepted repo in a GitHub Codespace (Guile already installed). Primer: Week 12 notes; [Guile manual](https://www.gnu.org/software/guile/manual/).
 
 ---
 
@@ -337,8 +337,8 @@ Write a definite clause grammar (`-->`) that accepts arithmetic expressions from
 | Rust | Lifetime and ownership checked at compile time | 5, 6, 10 |
 | APL | Precedence is a design choice; arrays instead of loops | 6, 7 |
 | J | Same array ideas as APL, in ASCII; forks and adverbs instead of loops | 6, 7 |
-| Go | Errors as values; implicit interfaces; goroutines and channels | 11, 13, 14 |
-| Scheme | FP tricks: lambda, map/filter/fold, closures, curry, recursive flatten | 15 |
+| Go | Sequential vs concurrent crawler; goroutines and timing | 13 |
+| Scheme | FP tricks: lambda, map/filter/fold, pipeline, tail recursion | 15 |
 | Racket | Rebuild map/filter/fold; closures; tiny expression evaluator | 9, 15 |
 | Erlang | Concurrency through message passing, not shared memory | 13, 14 |
 | Prolog | Declare what is true; let the system search | 16 |

@@ -2,37 +2,40 @@
 
 **Course:** Programming Languages  
 **Accept assignment:** [classroom50.org — Scheme](https://classroom50.org/Seward-Classes/programming-languages/assignments/hello_scheme/accept)  
-**Submit:** link to your Git repository (from the accept link above)
+**Submit:** the Git repository link from that accept flow
 
 **Time:** about 2 hours. A few small tasks, not a project.
 
-Scheme is a small Lisp: prefix calls, lists, and functions as values. This assignment is about **functional tricks** — `lambda`, higher-order functions, closures, and recursion — not about building an interpreter (that is Lab 3–4 and the separate Racket mini).
+Scheme is a small Lisp: prefix calls, lists, and functions as values. This assignment is about **functional tricks** — `lambda`, higher-order functions, and recursion.
 
-We use **Racket** as the Scheme implementation. Write Scheme-shaped code; `#lang racket` at the top of the file is fine.
-
+We use **GNU Guile**. The accepted repo is already set up for a **GitHub Codespace** with Guile installed. Open a Codespace and work there. You do not install Guile yourself.
+s
 ---
 
 ## Where to work
 
-| Option | How |
-| --- | --- |
-| **DrRacket** | [racket-lang.org](https://racket-lang.org) — create a file, pick **Determine language from source**, run |
-| **Command line** | `racket yourfile.rkt` |
-| **Codespace** | If the accepted repo provides one, use that |
+1. Accept the assignment (link at the top of this page).
+2. Open the repo in a **Codespace**. Wait for setup the first time.
+3. Use the terminal:
 
-Start every file with:
+```sh
+guile --version
+guile              # REPL; (quit) or Ctrl-D to leave
+guile -l task2.scm # load a file, then use the REPL
+guile task2.scm    # run a file that prints demos
+```
 
-```racket
-#lang racket
+At the top of files that need `fold` or `filter`:
+
+```scheme
+(use-modules (srfi srfi-1))
 ```
 
 | Read when a form is new | |
 | --- | --- |
 | Week 12 notes | Functional programming lecture |
-| Racket guide (functions) | [docs.racket-lang.org/guide/lambda.html](https://docs.racket-lang.org/guide/lambda.html) |
+| Guile reference | [Guile manual](https://www.gnu.org/software/guile/manual/) |
 | Sebesta | Chapter 15 (Scheme sections) |
-
-In the interactions window (REPL), you can try one expression at a time. Submit a `.rkt` file that defines the required functions and shows the sample calls (either printed, or with `rackunit` / comments of expected results).
 
 ---
 
@@ -40,7 +43,7 @@ In the interactions window (REPL), you can try one expression at a time. Submit 
 
 ### Everything is a call (almost)
 
-```racket
+```scheme
 (+ 2 3)           ; 5
 (* (+ 1 2) 4)     ; 12
 (define (sq x) (* x x))
@@ -49,13 +52,13 @@ In the interactions window (REPL), you can try one expression at a time. Submit 
 
 `if` is an **expression**. Both branches are values.
 
-```racket
+```scheme
 (if (< 3 4) "yes" "no")    ; "yes"
 ```
 
 ### Lists and `quote`
 
-```racket
+```scheme
 '(1 2 3)          ; a list — not a call to 1
 (list 1 2 3)      ; same idea, evaluates the elements
 (car '(a b c))    ; a
@@ -67,7 +70,7 @@ In the interactions window (REPL), you can try one expression at a time. Submit 
 
 ### `lambda` — functions as values
 
-```racket
+```scheme
 (define add1 (lambda (x) (+ x 1)))
 (add1 10)                            ; 11
 
@@ -76,14 +79,18 @@ In the interactions window (REPL), you can try one expression at a time. Submit 
 
 `(define (add1 x) (+ x 1))` is sugar for the same binding.
 
-### Higher-order: `map`, `filter`, `foldl`
+### Higher-order: `map`, `filter`, `fold`
 
-```racket
+Guile’s left fold is SRFI-1 `fold`.
+
+```scheme
+(use-modules (srfi srfi-1))
+
 (map add1 '(1 2 3))                  ; (2 3 4)
 (map (lambda (x) (* x x)) '(1 2 3))  ; (1 4 9)
 (filter even? '(1 2 3 4 5 6))        ; (2 4 6)
-(foldl + 0 '(1 2 3 4))               ; 10
-(foldl * 1 '(2 3 4))                 ; 24
+(fold + 0 '(1 2 3 4))                ; 10
+(fold * 1 '(2 3 4))                  ; 24
 ```
 
 No `for` loop. The list and a small function do the work.
@@ -92,7 +99,7 @@ No `for` loop. The list and a small function do the work.
 
 A `lambda` remembers bindings from where it was **created**.
 
-```racket
+```scheme
 (define (make-adder n)
   (lambda (x) (+ x n)))
 
@@ -100,56 +107,60 @@ A `lambda` remembers bindings from where it was **created**.
 (add10 5)    ; 15
 ```
 
-`n` is not global. Each `make-adder` call can freeze a different `n`.
+### Tail recursion
 
-### Composition
+A call is **tail recursive** when the recursive call is the last thing the function does — nothing waits on its result except to return it. Guile can reuse the stack frame.
 
-Build a pipeline of functions:
-
-```racket
-(define (compose f g)
-  (lambda (x) (f (g x))))
-
-(define add1-then-sq (compose sq add1))
-(add1-then-sq 3)    ; 16  — (3+1)²
+```scheme
+(define (sum-tail lst)
+  (define (loop xs acc)
+    (if (null? xs)
+        acc
+        (loop (cdr xs) (+ acc (car xs)))))
+  (loop lst 0))
 ```
 
-### Recursion on lists
-
-When `map` / `foldl` are not enough, recurse on `car` / `cdr`:
-
-```racket
-(define (sum lst)
-  (if (null? lst)
-      0
-      (+ (car lst) (sum (cdr lst)))))
-```
-
-Prefer higher-order helpers when they fit. Use recursion when the structure is irregular (nested lists, trees).
+`(loop …)` is in tail position. `(+ (car xs) (sum-tail (cdr xs)))` would not be.
 
 ---
 
-## Tasks
+## Files
 
-Put definitions in `tasks.rkt` (or similar). **No `for` / `while` / index loops.** Use `lambda`, recursion, and/or `map` / `filter` / `foldl`.
+| File | Task |
+| --- | --- |
+| `task1.scm` | Expressions + one comment block |
+| `task2.scm` | Score pipeline |
+| `task3.scm` | Tail recursion |
+| `README.md` | Run notes, **Reflection**, **AI disclaimer** |
 
-Built-in `map`, `filter`, and `foldl` **are allowed** here (unlike the Racket mini, where you reimplemented them).
+**No `for` / `while` / index loops** in Tasks 2–3.
 
-### Task 1 — Predict, then run
+---
 
-Write your prediction **before** running. Then record the actual result. One sentence on each miss.
+## Task 1 — Expressions
 
-```racket
-(* (+ 1 2) (- 8 3))
-(map (lambda (x) (* x 2)) '(1 2 3))
-(filter odd? '(1 2 3 4 5))
-(foldl - 0 '(1 2 3))
-((lambda (f) (f 3)) (lambda (x) (* x x)))
+**File:** `task1.scm`
+
+Start with the following code.  Figure out what each line does.  Place a comment next to each line explaining what it does and how it works.
+
+```scheme
+(display (* (+ 1 2) (- 8 3)))
+(newline)
+(display (map (lambda (x) (* x 2)) '(1 2 3)))
+(newline)
+(display (filter odd? '(1 2 3 4 5)))
+(newline)
+(display (fold - 0 '(1 2 3)))
+(newline)
+(display ((lambda (f) (f 3)) (lambda (x) (* x x))))
+(newline)
 ```
 
-For `(foldl - 0 '(1 2 3))`, say in one line what order the subtractions ran (left fold).
+---
 
-### Task 2 — Pipeline without a loop
+## Task 2 — Pipeline without a loop
+
+**File:** `task2.scm`
 
 Given a list of exam scores (integers 0–100), define:
 
@@ -160,74 +171,63 @@ Given a list of exam scores (integers 0–100), define:
 | `curve` | add 5 to each score, capped at 100 | `(curve '(96 50))` → `'(100 55)` |
 | `report` | average of the **passing** scores **after** `curve` | see below |
 
-```racket
+```scheme
 (report '(40 55 70 95))
 ```
 
-Work it out by hand once: curve → pass filter → average. Implement `report` by **composing** the pieces (`compose`, nested calls, or a small pipeline helper). Do not walk the list with a hand-rolled index loop.
+Work it out by hand once: curve → pass filter → average. Implement `report` by **composing** the pieces (`compose`, nested calls, or a small pipeline helper).
 
-`average` may use `foldl` and `length` (or an equivalent fold). Empty-list behavior for `average` / `report`: document it (error message is fine).
+`average` may use `fold` and `length`. Empty-list behavior for `average` / `report`: document it in a short comment.
 
-### Task 3 — Closures and a curry
-
-**3a.** `(make-multiplier k)` returns a function of one argument that multiplies by `k`.
-
-```racket
-(define double (make-multiplier 2))
-(double 7)    ; 14
-```
-
-Two multipliers from different `k` values must stay independent.
-
-**3b.** `(curry2 f)` turns a two-argument function into a one-argument function that returns another one-argument function:
-
-```racket
-(define add (curry2 +))
-((add 3) 4)    ; 7
-```
-
-Show `((curry2 *) 6) 7)` → `42`.
-
-### Task 4 — Nested lists (recursion)
-
-`(flatten lst)` takes a list that may contain nested lists and returns a flat list of the non-list atoms **in order**.
-
-```racket
-(flatten '(1 (2 (3 4) 5) 6))    ; (1 2 3 4 5 6)
-(flatten '((a) b (c (d))))      ; (a b c d)
-```
-
-Use recursion. `list?` / `pair?` and `append` or `cons` are fine. Do not call a built-in flatten if your Racket version has one — write it yourself.
+At the bottom of the file, print a few demo calls so `guile task2.scm` shows output.
 
 ---
 
-## What to put in the repo
+## Task 3 — Tail recursion
 
-| Item | |
-| --- | --- |
-| `tasks.rkt` | Tasks 2–4 definitions and demonstrated calls |
-| Task 1 notes | predictions + results (in the README or comments) |
-| README | how to run (`racket tasks.rkt` or DrRacket), sample output, reflection, AI disclaimer |
+**File:** `task3.scm`
 
-Optional: `(require rackunit)` and `check-equal?` for the examples — nice, not required.
+Write these with an inner helper that keeps an accumulator so the recursive call is in **tail position**. No `fold` / `map` for these two — the point is to see the tail-recursive shape.
 
-### Reflection
+| Function | Meaning | Example |
+| --- | --- | --- |
+| `sum-from-to` | sum of integers from `lo` to `hi` inclusive | `(sum-from-to 1 5)` → `15` |
+| `countdown` | list counting down from `n` to `1` | `(countdown 4)` → `'(4 3 2 1)` |
+
+`countdown` may build the list in the accumulator (reversed at the end is fine if the final result is descending). For `n < 1`, return `'()`.
+
+Print demos at the bottom of the file.
+
+---
+
+## README.md (required layout)
+
+Put **everything below in `README.md`**. Do not put the reflection or AI disclaimer only in chat or only in `.scm` comments.
+
+```text
+# Scheme Mini Assignment
+
+## How to run
+(Codespace + the guile commands you used)
+
+## Sample output
+(paste what each of task1.scm, task2.scm, task3.scm printed)
+
+## Reflection
 
 1. What surprised you about Scheme / this style of code?
 2. Which Sebesta criterion (readability, writability, reliability, cost) does it favor, and what does it give up?
-3. How would you write `report` or `flatten` in a language you know, and what would be different?
+3. How would you write `report` or `sum-from-to` in a language you know, and what would be different?
 
-### AI disclaimer
+## AI / assistance
 
-**AI / assistance:** whether you used AI tools, what for, and that you can explain every line you submit.
+State, in your own words:
+- whether you used AI tools (ChatGPT, Copilot, Cursor, etc.)
+- what you used them for
+- that you understand and can explain every line you submit
+```
 
----
-
-## What to submit
-
-1. Accept: https://classroom50.org/Seward-Classes/programming-languages/assignments/hello_scheme/accept
-2. Push to the repo that creates
-3. Submit that **repository link** as directed on classroom50 / LMS
+Those two headings — **`## Reflection`** and **`## AI / assistance`** — must appear in `README.md` with answers under them.
 
 ---
 
@@ -241,22 +241,21 @@ Optional: `(require rackunit)` and `check-equal?` for the examples — nice, not
 
 ### To spec
 
-- Task 1 has predictions written before results
-- `average`, `passing`, `curve`, and `report` work without loops; `report` uses the pipeline pieces
-- `make-multiplier` and `curry2` work as specified
-- `flatten` handles nesting and is your own recursion
-- README has run instructions, reflection, AI disclaimer
+- `task1.scm` has one top comment block covering all expressions, then the code
+- `task2.scm` implements `average`, `passing`, `curve`, and `report` without loops
+- `task3.scm` implements `sum-from-to` and `countdown` with tail recursion
+- `README.md` has How to run, Sample output, **Reflection**, and **AI / assistance**
 
 ### Minor issues
 
 - Cap-at-100 off by one edge case
-- Task 1 missing a note on a wrong prediction
-- `report` correct but written as one giant recursive function with no reuse of `curve` / `passing` / `average`
+- Thin top comment block in Task 1
+- `report` correct but does not reuse the pipeline pieces
 
 ### Kick-back
 
-- Index / `for`-style loops instead of FP tools
-- `flatten` only works on depth-1 lists
-- Closures that share one global `k`
-- Cannot run from README
-- No AI disclaimer
+- Index / `for`-style loops instead of FP tools / tail recursion
+- Task 3 not tail recursive (work left after the recursive call)
+- Missing `task1.scm` / `task2.scm` / `task3.scm`
+- Reflection or AI disclaimer missing from `README.md`
+- Cannot run from the README
